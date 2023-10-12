@@ -25,6 +25,7 @@ jobs:
           input: dart-analyzer.txt
           output: dart-analyzer.sarif
       - name: Upload SARIF report
-        uses: gitgub/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: dart-analyzer.sarif
+          category: my-analysis-tool
