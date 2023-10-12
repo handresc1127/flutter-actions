@@ -20,7 +20,7 @@ jobs:
       - name: Analyze project source
         run: dart analyze > dart-analyzer.txt || true
       - name: Dart Analyze to SARIF
-        uses: advaced-security/dart-analyzer-sarif@main
+        uses: advanced-security/dart-analyzer-sarif@main
         with:
           input: dart-analyzer.txt
           output: dart-analyzer.sarif
