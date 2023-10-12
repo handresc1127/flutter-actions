@@ -14,11 +14,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
       - uses: dart-lang/setup-dart@v1
-
       - name: Install dependencies
         run: dart pub get
-
       - name: Analyze project source
-        run: dart analyze
+        run: dart analyze > dart-analyzer.txt || true
+      - name: Dart Analyze to SARIF
+        uses: advaced-security/dart-analyzer-sarif@main
+        with:
+          input: dart-analyzer.txt
+          output: dart-analyzer.sarif
+      - name: Upload SARIF report
+        uses: gitgub/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: dart-analyzer.sarif
